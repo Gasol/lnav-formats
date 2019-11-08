@@ -1,0 +1,101 @@
+{
+  "cloudflare": {
+    "title": "Cloudflare Request Log",
+    "description": "An log format configuration for Cloudflare Request logs",
+    "url": "https://developers.cloudflare.com/logs/about/",
+    "json": true,
+    "convert-to-local-time": true,
+    "ordered-by-time": true,
+    "hide-extra": true,
+    "multiline": false,
+    "timestamp-field": "EdgeStartTimestamp",
+    "timestamp-format": [
+      "%i"
+    ],
+    "timestamp-divisor": 1000000000,
+    "level-field": "CacheCacheStatus",
+    "level": {
+      "info": "hit",
+      "warning": "miss"
+    },
+    "opid-field": "RayID",
+    "value": {
+      "CacheCacheStatus": {
+        "kind": "string"
+      },
+      "ClientIP": {
+        "kind": "string"
+      },
+      "ClientRequestHost": {
+        "kind": "string",
+        "hidden": true
+      },
+      "ClientRequestReferer": {
+        "kind": "string",
+        "hidden": true
+      },
+      "ClientRequestMethod": {
+        "kind": "string"
+      },
+      "ClientRequestURI": {
+        "kind": "string"
+      },
+      "ClientRequestUserAgent": {
+        "kind": "string",
+        "hidden": true
+      },
+      "EdgeStartTimestamp": {
+        "kind": "integer"
+      },
+      "EdgeEndTimestamp": {
+        "kind": "integer",
+        "hidden": true
+      },
+      "EdgeResponseStatus": {
+        "kind": "integer"
+      },
+      "EdgeResponseBytes": {
+        "kind": "integer"
+      },
+      "RayID": {
+        "kind": "string",
+        "hidden": true
+      }
+    },
+    "line-format": [
+      {
+        "field": "__timestamp__"
+      },
+      " ",
+      {
+        "field": "ClientIP",
+        "min-width": 20,
+        "max-width": 20,
+        "align": "right",
+        "overflow": "dot-dot"
+      },
+      " [",
+      {
+        "field": "CacheCacheStatus"
+      },
+      "] ",
+      {
+        "field": "EdgeResponseStatus"
+      },
+      " ",
+      {
+        "field": "ClientRequestMethod"
+      },
+      " ",
+      {
+        "field": "ClientRequestURI",
+        "max-width": 60,
+        "overflow": "dot-dot"
+      },
+      " ",
+      {
+        "field": "EdgeResponseBytes"
+      }
+    ]
+  }
+}
